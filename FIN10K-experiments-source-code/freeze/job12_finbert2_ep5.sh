@@ -1,0 +1,35 @@
+#!/bin/bash
+#SBATCH --nodes=1
+#SBATCH --N=1
+#SBATCH --gres=gpu:8
+#SBATCH --exclusive
+#SBATCH --mem=0
+##SBATCH -p debug
+#SBATCH --time=06:00:00
+##SBATCH --time=06:00:00
+
+srun --gres=gpu:1 -C cuda-mode-exclusive -t 250 -N 1 -n 1 python lf-bilstm-hist-3.py 4094 2001 logvol 5 6 5 6e-4 &
+srun --gres=gpu:1 -C cuda-mode-exclusive -t 250 -N 1 -n 1 python lf-bilstm-hist-3.py 4094 2001 logvol 5 6 5 7e-4 &
+srun --gres=gpu:1 -C cuda-mode-exclusive -t 250 -N 1 -n 1 python lf-bilstm-hist-3.py 4094 2001 logvol 5 6 5 8e-4 &
+srun --gres=gpu:1 -C cuda-mode-exclusive -t 250 -N 1 -n 1 python lf-bilstm-hist-3.py 4094 2001 logvol 5 6 5 9e-4 &
+srun --gres=gpu:1 -C cuda-mode-exclusive -t 250 -N 1 -n 1 python lf-bilstm-hist-3.py 4094 2001 logvol 5 6 5 10e-4 &
+srun --gres=gpu:1 -C cuda-mode-exclusive -t 250 -N 1 -n 1 python lf-bilstm-hist-3.py 4094 2001 logvol 5 6 5 11e-4 &
+srun --gres=gpu:1 -C cuda-mode-exclusive -t 250 -N 1 -n 1 python lf-bilstm-hist-3.py 4094 2001 logvol 5 6 5 12e-4 &
+srun --gres=gpu:1 -C cuda-mode-exclusive -t 250 -N 1 -n 1 python lf-bilstm-hist-3.py 4094 2001 logvol 5 6 5 13e-4 &
+srun --gres=gpu:1 -C cuda-mode-exclusive -t 250 -N 1 -n 1 python finbert-bilstm-hist-3.py 510 2001 logvol 5 6 5 6e-4 &
+srun --gres=gpu:1 -C cuda-mode-exclusive -t 250 -N 1 -n 1 python finbert-bilstm-hist-3.py 510 2001 logvol 5 6 5 7e-4 &
+srun --gres=gpu:1 -C cuda-mode-exclusive -t 250 -N 1 -n 1 python finbert-bilstm-hist-3.py 510 2001 logvol 5 6 5 8e-4 &
+srun --gres=gpu:1 -C cuda-mode-exclusive -t 250 -N 1 -n 1 python finbert-bilstm-hist-3.py 510 2001 logvol 5 6 5 9e-4 &
+srun --gres=gpu:1 -C cuda-mode-exclusive -t 250 -N 1 -n 1 python finbert-bilstm-hist-3.py 510 2001 logvol 5 6 5 10e-4 &
+srun --gres=gpu:1 -C cuda-mode-exclusive -t 250 -N 1 -n 1 python finbert-bilstm-hist-3.py 510 2001 logvol 5 6 5 11e-4 &
+srun --gres=gpu:1 -C cuda-mode-exclusive -t 250 -N 1 -n 1 python finbert-bilstm-hist-3.py 510 2001 logvol 5 6 5 12e-4 &
+srun --gres=gpu:1 -C cuda-mode-exclusive -t 250 -N 1 -n 1 python finbert-bilstm-hist-3.py 510 2001 logvol 5 6 5 13e-4 &
+srun --gres=gpu:1 -C cuda-mode-exclusive -t 250 -N 1 -n 1 python bert-bilstm-hist-3.py 510 2001 logvol 5 6 5 6e-4 &
+srun --gres=gpu:1 -C cuda-mode-exclusive -t 250 -N 1 -n 1 python bert-bilstm-hist-3.py 510 2001 logvol 5 6 5 7e-4 &
+srun --gres=gpu:1 -C cuda-mode-exclusive -t 250 -N 1 -n 1 python bert-bilstm-hist-3.py 510 2001 logvol 5 6 5 8e-4 &
+srun --gres=gpu:1 -C cuda-mode-exclusive -t 250 -N 1 -n 1 python bert-bilstm-hist-3.py 510 2001 logvol 5 6 5 9e-4 &
+srun --gres=gpu:1 -C cuda-mode-exclusive -t 250 -N 1 -n 1 python bert-bilstm-hist-3.py 510 2001 logvol 5 6 5 10e-4 &
+srun --gres=gpu:1 -C cuda-mode-exclusive -t 250 -N 1 -n 1 python bert-bilstm-hist-3.py 510 2001 logvol 5 6 5 11e-4 &
+srun --gres=gpu:1 -C cuda-mode-exclusive -t 250 -N 1 -n 1 python bert-bilstm-hist-3.py 510 2001 logvol 5 6 5 12e-4 &
+srun --gres=gpu:1 -C cuda-mode-exclusive -t 250 -N 1 -n 1 python bert-bilstm-hist-3.py 510 2001 logvol 5 6 5 13e-4 &
+wait
