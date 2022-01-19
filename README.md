@@ -3,8 +3,8 @@
  
 # Model Weights and Data
 
-The saved weights of the best models for FETILDA on the FIN10K dataset are available here: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5847105.svg)](https://doi.org/10.5281/zenodo.5847105){:target="_blank"}.
+The saved weights of the best models for FETILDA on the FIN10K dataset are available here: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5847105.svg)](https://doi.org/10.5281/zenodo.5847105).
 
-The saved weights of the best frozen model for FETILDA on the US bank dataset are available here: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5847335.svg)](https://doi.org/10.5281/zenodo.5847335){:target="_blank"}.
+The saved weights of the best frozen model for FETILDA on the US bank dataset are available here: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5847335.svg)](https://doi.org/10.5281/zenodo.5847335).
 
-The csv files to be used directly by the Python scripts are available here: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5849849.svg)](https://doi.org/10.5281/zenodo.5849849){:target="_blank"}.
+The csv files to be used directly by the Python scripts are available here: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5849849.svg)](https://doi.org/10.5281/zenodo.5849849).
