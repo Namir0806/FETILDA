@@ -600,7 +600,6 @@ valid_loss_file = open('best_valid_loss_bert_'+str(max_length)+'_'+sec+'_'+bv+'_
 valid_loss_file.write(str(best_valid_loss)+"\n")
 valid_loss_file.write(str(best_epoch))
 valid_loss_file.close()
-'''
 # pass the pre-trained BERT to our define architecture
 model = BERT_Arch(bert)
 
@@ -608,81 +607,123 @@ model = BERT_Arch(bert)
 model = model.to(device)
 
 #load weights of best model
-path = 'saved_weights_bert_'+str(max_length)+'_'+sec+'_'+bv+'_ep'+str(total_epochs)+'_lr='+'{:.1e}'.format(learning_rate)+'_bilstm.pt'
+path = 'saved_weights_bert_'+str(max_length)+'_taiwan_'+bv+'_ep'+str(total_epochs)+'_lr='+'{:.1e}'.format(learning_rate)+'_bilstm.pt'
 model.load_state_dict(torch.load(path))
 
 xs_train , _ = train_x()
 
-# get predictions for test data
-valid_mses = []
-test_mses = []
+years = ["2001","2002","2003","2004","2005","2006"]
+for year in years:
 
-methods = ["bare", "svr", "kr", "lr"]
+    sec = year
 
-_ , preds, xs_valid = evaluate()
-preds = np.asarray(preds)
-valid_y = valid_y.cpu().data.numpy()
-valid_mse = mean_squared_error(valid_y, preds)
-valid_mses.append(valid_mse)
+    test_fname = sec+"-result.csv"
 
-xs_test, preds = test()
-preds = np.asarray(preds)
-test_y = test_y.cpu().data.numpy()
-test_mse = mean_squared_error(test_y, preds)
-test_mses.append(test_mse)
+    #TEST
 
-print("bert mse: ",test_mse)
-lr = LinearRegression()
-kr = KernelRidge(kernel='rbf', alpha=0.1, gamma=0.1)
-svr = SVR(kernel='rbf', C=0.1, epsilon=0.0001) #linear')
+    df_test = pd.read_csv(test_fname)
 
-models_list = [svr, kr, lr]
+    test_text = df_test['mda']
+    test_hist = df_test['prev_'+bv]
+    test_labels = df_test[bv]
 
-for m in models_list:
-    m.fit(xs_train, train_labels.to_numpy())
+    test_text = test_text.astype(str)
+    # tokenize and encode sequences in the test set
+    tokens_test = tokenizer.batch_encode_plus(
+        test_text.tolist(),
+        add_special_tokens=False
+    )
 
-    preds = m.predict(xs_valid)
-    valid_mse = mean_squared_error(valid_labels.to_numpy(), preds)
+    #Extract input ids
+    test_seq_ = tokens_test['input_ids']
+    #Split each document into 510 tokens
+    test_seq = [[test_seq_[j][i:i + max_length] for i in range(0, len(test_seq_[j]), max_length)] for j in range(len(test_seq_))]
+    #Add [CLS], [SEP] and [PAD] tokens
+    test_seq = [[[tokenizer.cls_token_id] + test_seq[j][i] + [tokenizer.sep_token_id] if len(test_seq[j][i]) == max_length else [tokenizer.cls_token_id]+test_seq[j][i] + [tokenizer.sep_token_id]+ [tokenizer.pad_token_id] * (max_length-len(test_seq[j][i])) for i in range(len(test_seq[j]))] for j in range(len(test_seq))]
+
+
+    #Extract attention masks
+    test_mask_ = tokens_test['attention_mask']
+    #Split each document into 510 tokens
+    test_mask = [[test_mask_[j][i:i + max_length] for i in range(0, len(test_mask_[j]), max_length)] for j in range(len(test_mask_))]
+    #Add [1] for attention and [0] for [PAD]
+    test_mask = [[[1] + test_mask[j][i] + [1] if len(test_mask[j][i]) == max_length else [1]+test_mask[j][i]+[1] + [0] * (max_length-len(test_mask[j][i])) for i in range(len(test_mask[j]))] for j in range(len(test_mask))]
+
+    test_hist = torch.tensor(test_hist.tolist()).to(device)
+    test_y = torch.tensor(test_labels.tolist()).to(device)
+
+
+    # get predictions for test data
+    valid_mses = []
+    test_mses = []
+
+    methods = ["bare", "svr", "kr", "lr"]
+
+    _ , preds, xs_valid = evaluate()
+    preds = np.asarray(preds)
+    valid_y_numpy = valid_y.cpu().data.numpy()
+    valid_mse = mean_squared_error(valid_y_numpy, preds)
     valid_mses.append(valid_mse)
 
-    preds = m.predict(xs_test)
-    test_mse = mean_squared_error(test_labels.to_numpy(), preds)
+    xs_test, preds = test()
+    preds = np.asarray(preds)
+    test_y = test_y.cpu().data.numpy()
+    test_mse = mean_squared_error(test_y, preds)
     test_mses.append(test_mse)
-    print(m, test_mse,'---',valid_mse)
+
+    print("bert bare mse: "+str(test_mses[0])+'---bare---'+str(valid_mses[0]))
+    lr = LinearRegression()
+    kr = KernelRidge(kernel='rbf', alpha=0.1, gamma=0.1)
+    svr = SVR(kernel='rbf', C=0.1, epsilon=0.0001) #linear')
+
+    models_list = [svr, kr, lr]
+
+    for m in models_list:
+        m.fit(xs_train, train_labels.to_numpy())
+
+        preds = m.predict(xs_valid)
+        valid_mse = mean_squared_error(valid_labels.to_numpy(), preds)
+        valid_mses.append(valid_mse)
+
+        preds = m.predict(xs_test)
+        test_mse = mean_squared_error(test_labels.to_numpy(), preds)
+        test_mses.append(test_mse)
+        print(m, test_mse,'---',valid_mse)
 
 
-mse = str(test_mses[valid_mses.index(min(valid_mses))])+"---"+methods[valid_mses.index(min(valid_mses))]+"---"+str(min(valid_mses))
+    mse = str(test_mses[valid_mses.index(min(valid_mses))])+"---"+methods[valid_mses.index(min(valid_mses))]+"---"+str(min(valid_mses))
 
 
-spearmanr = (stats.spearmanr(preds, test_y))[0] 
-kendallr = (stats.kendalltau(preds, test_y))[0]  
+    spearmanr = (stats.spearmanr(preds, test_y))[0] 
+    kendallr = (stats.kendalltau(preds, test_y))[0]  
 
-print("bert mse: ", mse)
+    print("bert mse: ", mse)
 
-mse_file = open('mse_bert_'+str(max_length)+'_'+sec+'_'+bv+'_ep'+str(epochs)+'_lr='+'{:.1e}'.format(learning_rate)+'_bilstm.txt', "w")
-mse_file.write(mse + "\n")
-mse_file.write(str(best_valid_loss)+"\n")
-mse_file.write(str(spearmanr) + "\n")    
-mse_file.write(str(kendallr) + "\n")       
-#mse_file.close()
+    mse_file = open('mse_bert_'+str(max_length)+'_'+sec+'_'+bv+'_ep'+str(total_epochs)+'_lr='+'{:.1e}'.format(learning_rate)+'_bilstm.txt', "w")
+    mse_file.write(mse + "\n")
+    mse_file.write(str(test_mses[0])+'---bare---'+str(valid_mses[0])+"\n")
+    mse_file.write(str(best_valid_loss)+" after epoch: "+str(best_epoch)+"\n")
+    mse_file.write(str(spearmanr) + "\n")    
+    mse_file.write(str(kendallr) + "\n")       
+    #mse_file.close()
+    '''
+    test_error = pd.DataFrame()               
+    test_error['cik_year'] = test_cik.tolist()   
+    test_error['test_y'] = test_y.tolist()       
+    test_error['preds'] = [p[0] for p in preds.tolist()]    
+    test_error['error'] = test_error['test_y'] - test_error['preds']            
+    test_error.to_csv('error_bert_'+str(max_length)+'_'+sec+'_'+bv+'_mean_hist.csv', index=False)          
+    '''
 
-test_error = pd.DataFrame()               
-test_error['cik_year'] = test_cik.tolist()   
-test_error['test_y'] = test_y.tolist()       
-test_error['preds'] = [p[0] for p in preds.tolist()]    
-test_error['error'] = test_error['test_y'] - test_error['preds']            
-test_error.to_csv('error_bert_'+str(max_length)+'_'+sec+'_'+bv+'_mean_hist.csv', index=False)          
+    #Linear Baseline
+    lr = LinearRegression().fit(train_hist.cpu().data.numpy().reshape(-1, 1),
+                                    train_y.cpu().data.numpy().reshape(-1, 1))
+    preds = lr.predict(test_hist.cpu().data.numpy().reshape(-1, 1))
+    lr_mse = mean_squared_error(test_y.reshape(-1, 1), preds)
 
+    print("LR mse", lr_mse)
+    mse_file.write("Linear mse: " + str(lr_mse))
+    mse_file.close()
 
-#Linear Baseline
-lr = LinearRegression().fit(train_hist.cpu().data.numpy().reshape(-1, 1),
-                                train_y.cpu().data.numpy().reshape(-1, 1))
-preds = lr.predict(test_hist.cpu().data.numpy().reshape(-1, 1))
-lr_mse = mean_squared_error(test_y.reshape(-1, 1), preds)
-
-print("LR mse", lr_mse)
-mse_file.write("Linear mse: " + str(lr_mse))
-mse_file.close()
-'''
 
 print("Total execution time: ", time.time() - start)

@@ -1,0 +1,565 @@
+Last login: Fri Dec 31 07:18:17 on ttys000
+(base) namir@Namirs-MacBook ~ % ssh DLTMboxi@blp01.ccni.rpi.edu
+PIC+Token: 
+Password: 
+PIC+Token: 
+Password: 
+PIC+Token: 
+Password: 
+Last login: Wed Dec 29 22:27:12 2021 from 128.213.79.77
+
+               ** CCI SSH Gateway (Landing pad) **
+**                                                             **
+**     Please report all support and operation issues to       **
+**     support@ccni.rpi.edu                                    **
+**                                                             **
+**     On-line documentation for the systems can be found at:  **
+**     https://secure.cci.rpi.edu/wiki                         **
+**                                                             **
+**     CCI does not provide any data backup services. Users    **
+**     are responsible for their own data management and       **
+**     backup.                                                 **
+**                                                             **
+**     Use is subject to the terms of the policy for           **
+**     Acceptable Use of CCI Resources.                        **
+**                                                             **
+[DLTMboxi@blp01 ~]$ ssh nplfen01
+DLTMboxi@nplfen01's password: 
+Last login: Wed Dec 29 11:32:22 2021 from blp01.ccni.rpi.edu
+[DLTMboxi@npl41 ~]$ cd scratch
+[DLTMboxi@npl41 scratch]$ source env/bin/activate
+(env) [DLTMboxi@npl41 scratch]$ cd all.data
+(env) [DLTMboxi@npl41 all.data]$ srun --gres=gpu:1 -C cuda-mode-exclusive -t 360 -N 1 -n 1 python tfidf_reg_org.py taiwan logvol hist
+^Csrun: interrupt (one more within 1 sec to abort)
+srun: task 0: running
+^Csrun: interrupt (one more within 1 sec to abort)
+srun: task 0: running
+^Csrun: sending Ctrl-C to job 268542.0
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** STEP 268542.0 ON npl09 CANCELLED AT 2021-12-31T08:26:43 ***
+(env) [DLTMboxi@npl41 all.data]$ python tfidf_reg_org.py taiwan logvol hist
+.
+/gpfs/u/scratch/DLTM/DLTMboxi/env/lib64/python3.6/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+^C^C^Z
+[1]+  Stopped                 python tfidf_reg_org.py taiwan logvol hist
+(env) [DLTMboxi@npl41 all.data]$ srun --gres=gpu:1 -C cuda-mode-exclusive -t 360 -N 1 -n 1 python tfidf_reg_org.py taiwan logvol hist
+^Csrun: interrupt (one more within 1 sec to abort)
+srun: task 0: running
+^Csrun: interrupt (one more within 1 sec to abort)
+srun: task 0: running
+^Csrun: sending Ctrl-C to job 268543.0
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** STEP 268543.0 ON npl09 CANCELLED AT 2021-12-31T10:42:41 ***
+(env) [DLTMboxi@npl41 all.data]$ squeue
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+(env) [DLTMboxi@npl41 all.data]$ srun --gres=gpu:1 -C cuda-mode-exclusive -t 360 -N 1 -n 1 python tfidf_reg_org.py taiwan logvol hist
+^Csrun: interrupt (one more within 1 sec to abort)
+srun: task 0: running
+^Csrun: sending Ctrl-C to job 268557.0
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** STEP 268557.0 ON npl03 CANCELLED AT 2021-12-31T11:36:54 ***
+^Csrun: interrupt (one more within 1 sec to abort)
+srun: task 0: running
+(env) [DLTMboxi@npl41 all.data]$ squeue
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+(env) [DLTMboxi@npl41 all.data]$ cd ..
+(env) [DLTMboxi@npl41 scratch]$ cd doc-level-unfreeze-100percent
+(env) [DLTMboxi@npl41 doc-level-unfreeze-100percent]$ sh log1p1.sh
+.
+.
+.
+.
+.
+.
+.
+Traceback (most recent call last):
+  File "log1p.py", line 86, in <module>
+    X_train = sc.log1p(X_train)
+TypeError: ufunc 'log1p' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+Traceback (most recent call last):
+  File "log1p.py", line 86, in <module>
+    X_train = sc.log1p(X_train)
+TypeError: ufunc 'log1p' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+Traceback (most recent call last):
+  File "log1p.py", line 86, in <module>
+    X_train = sc.log1p(X_train)
+TypeError: ufunc 'log1p' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+Traceback (most recent call last):
+  File "log1p.py", line 86, in <module>
+    X_train = sc.log1p(X_train)
+TypeError: ufunc 'log1p' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+Traceback (most recent call last):
+  File "log1p.py", line 86, in <module>
+    X_train = sc.log1p(X_train)
+TypeError: ufunc 'log1p' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+Traceback (most recent call last):
+  File "log1p.py", line 86, in <module>
+    X_train = sc.log1p(X_train)
+TypeError: ufunc 'log1p' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+Traceback (most recent call last):
+  File "log1p.py", line 86, in <module>
+    X_train = sc.log1p(X_train)
+TypeError: ufunc 'log1p' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+srun: error: npl24: task 0: Exited with exit code 1
+srun: error: npl15: task 0: Exited with exit code 1
+srun: error: npl40: task 0: Exited with exit code 1
+srun: error: npl38: task 0: Exited with exit code 1
+srun: error: npl35: task 0: Exited with exit code 1
+srun: error: npl39: task 0: Exited with exit code 1
+srun: error: npl14: task 0: Exited with exit code 1
+.
+Traceback (most recent call last):
+  File "log1p.py", line 86, in <module>
+    X_train = sc.log1p(X_train)
+TypeError: ufunc 'log1p' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+srun: error: npl06: task 0: Exited with exit code 1
+.
+Traceback (most recent call last):
+  File "log1p.py", line 86, in <module>
+    X_train = sc.log1p(X_train)
+TypeError: ufunc 'log1p' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+srun: error: npl03: task 0: Exited with exit code 1
+.
+Traceback (most recent call last):
+  File "log1p.py", line 86, in <module>
+    X_train = sc.log1p(X_train)
+TypeError: ufunc 'log1p' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+.
+.
+Traceback (most recent call last):
+  File "log1p.py", line 86, in <module>
+    X_train = sc.log1p(X_train)
+TypeError: ufunc 'log1p' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+Traceback (most recent call last):
+  File "log1p.py", line 86, in <module>
+    X_train = sc.log1p(X_train)
+TypeError: ufunc 'log1p' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+srun: error: npl16: task 0: Exited with exit code 1
+srun: error: npl04: task 0: Exited with exit code 1
+srun: error: npl37: task 0: Exited with exit code 1
+.
+Traceback (most recent call last):
+  File "log1p.py", line 86, in <module>
+    X_train = sc.log1p(X_train)
+TypeError: ufunc 'log1p' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+.
+Traceback (most recent call last):
+  File "log1p.py", line 86, in <module>
+    X_train = sc.log1p(X_train)
+TypeError: ufunc 'log1p' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+.
+.
+Traceback (most recent call last):
+  File "log1p.py", line 86, in <module>
+    X_train = sc.log1p(X_train)
+TypeError: ufunc 'log1p' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+srun: error: npl17: task 0: Exited with exit code 1
+Traceback (most recent call last):
+  File "log1p.py", line 86, in <module>
+    X_train = sc.log1p(X_train)
+TypeError: ufunc 'log1p' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+srun: error: npl36: task 0: Exited with exit code 1
+srun: error: npl08: task 0: Exited with exit code 1
+srun: error: npl30: task 0: Exited with exit code 1
+(env) [DLTMboxi@npl41 doc-level-unfreeze-100percent]$ sh log1p2.sh
+.
+Traceback (most recent call last):
+  File "log1p.py", line 86, in <module>
+    X_train = sc.log1p(X_train)
+TypeError: ufunc 'log1p' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+.
+.
+Traceback (most recent call last):
+  File "log1p.py", line 86, in <module>
+    X_train = sc.log1p(X_train)
+TypeError: ufunc 'log1p' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+Traceback (most recent call last):
+  File "log1p.py", line 86, in <module>
+    X_train = sc.log1p(X_train)
+TypeError: ufunc 'log1p' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+srun: error: npl35: task 0: Exited with exit code 1
+srun: error: npl14: task 0: Exited with exit code 1
+srun: error: npl03: task 0: Exited with exit code 1
+.
+Traceback (most recent call last):
+  File "log1p.py", line 86, in <module>
+    X_train = sc.log1p(X_train)
+TypeError: ufunc 'log1p' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+srun: error: npl31: task 0: Exited with exit code 1
+.
+Traceback (most recent call last):
+  File "log1p.py", line 86, in <module>
+    X_train = sc.log1p(X_train)
+TypeError: ufunc 'log1p' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+.
+Traceback (most recent call last):
+  File "log1p.py", line 86, in <module>
+    X_train = sc.log1p(X_train)
+TypeError: ufunc 'log1p' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+.
+Traceback (most recent call last):
+  File "log1p.py", line 86, in <module>
+    X_train = sc.log1p(X_train)
+TypeError: ufunc 'log1p' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+srun: error: npl07: task 0: Exited with exit code 1
+.
+srun: error: npl19: task 0: Exited with exit code 1
+Traceback (most recent call last):
+  File "log1p.py", line 86, in <module>
+    X_train = sc.log1p(X_train)
+TypeError: ufunc 'log1p' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+srun: error: npl11: task 0: Exited with exit code 1
+srun: error: npl02: task 0: Exited with exit code 1
+.
+Traceback (most recent call last):
+  File "log1p.py", line 86, in <module>
+    X_train = sc.log1p(X_train)
+TypeError: ufunc 'log1p' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+.
+Traceback (most recent call last):
+  File "log1p.py", line 86, in <module>
+    X_train = sc.log1p(X_train)
+TypeError: ufunc 'log1p' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+srun: error: npl15: task 0: Exited with exit code 1
+.
+Traceback (most recent call last):
+  File "log1p.py", line 86, in <module>
+    X_train = sc.log1p(X_train)
+TypeError: ufunc 'log1p' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+srun: error: npl24: task 0: Exited with exit code 1
+srun: error: npl38: task 0: Exited with exit code 1
+.
+Traceback (most recent call last):
+  File "log1p.py", line 86, in <module>
+    X_train = sc.log1p(X_train)
+TypeError: ufunc 'log1p' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+srun: error: npl06: task 0: Exited with exit code 1
+.
+Traceback (most recent call last):
+  File "log1p.py", line 86, in <module>
+    X_train = sc.log1p(X_train)
+TypeError: ufunc 'log1p' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+srun: error: npl05: task 0: Exited with exit code 1
+.
+Traceback (most recent call last):
+  File "log1p.py", line 86, in <module>
+    X_train = sc.log1p(X_train)
+TypeError: ufunc 'log1p' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+.
+Traceback (most recent call last):
+  File "log1p.py", line 86, in <module>
+    X_train = sc.log1p(X_train)
+TypeError: ufunc 'log1p' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+srun: error: npl10: task 0: Exited with exit code 1
+srun: error: npl18: task 0: Exited with exit code 1
+.
+Traceback (most recent call last):
+  File "log1p.py", line 86, in <module>
+    X_train = sc.log1p(X_train)
+TypeError: ufunc 'log1p' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+srun: error: npl01: task 0: Exited with exit code 1
+(env) [DLTMboxi@npl41 doc-level-unfreeze-100percent]$ sh log1p1.sh
+/gpfs/u/scratch/DLTM/DLTMboxi/env/lib64/python3.6/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+.
+tensor(0.7898)
+torch.float32
+torch.Size([1983])
+sec1A-eps-nohist
+0.0019029912889451115---svr---0.0013878655278278462
+Total execution time:  794.3525176048279
+.
+tensor(0.8099)
+torch.float32
+torch.Size([1983])
+sec1A-roa-nohist
+0.001241667045684473---svr---0.000994053575108482
+Total execution time:  816.1937239170074
+/gpfs/u/scratch/DLTM/DLTMboxi/env/lib64/python3.6/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+/gpfs/u/scratch/DLTM/DLTMboxi/env/lib64/python3.6/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+.
+tensor(0.3481)
+torch.float32
+torch.Size([1983])
+sec1A-roe-hist
+0.02495305290535827---svr---0.012638956098556335
+Total execution time:  822.6519441604614
+/gpfs/u/scratch/DLTM/DLTMboxi/env/lib64/python3.6/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+.
+tensor(0.3481)
+torch.float32
+torch.Size([1983])
+sec1A-roe-nohist
+0.0250906280878531---svr---0.012748063113962088
+Total execution time:  834.8909657001495
+/gpfs/u/scratch/DLTM/DLTMboxi/env/lib64/python3.6/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+.
+tensor(0.7898)
+torch.float32
+torch.Size([2000])
+sec7-eps-nohist
+0.0018902028055557429---svr---0.001461859278738961
+Total execution time:  834.789754152298
+/gpfs/u/scratch/DLTM/DLTMboxi/env/lib64/python3.6/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+.
+tensor(0.5069)
+torch.float32
+torch.Size([1983])
+sec1A-tobinq-hist
+0.026026108959834916---svr---0.008118711833379819
+Total execution time:  838.9539091587067
+/gpfs/u/scratch/DLTM/DLTMboxi/env/lib64/python3.6/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+.
+tensor(0.7898)
+torch.float32
+torch.Size([2000])
+sec7-eps-hist
+0.0018871115704521282---svr---0.0014596955075415086
+Total execution time:  843.0184226036072
+.
+tensor(0.5069)
+torch.float32
+torch.Size([1983])
+sec1A-tobinq-nohist
+0.026174038275963936---svr---0.008215363807884997
+Total execution time:  855.9266061782837
+/gpfs/u/scratch/DLTM/DLTMboxi/env/lib64/python3.6/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+.
+tensor(0.3481)
+torch.float32
+torch.Size([2000])
+sec7-roe-nohist
+0.02581130664316852---svr---0.012985530568831546
+Total execution time:  869.2236502170563
+/gpfs/u/scratch/DLTM/DLTMboxi/env/lib64/python3.6/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+/gpfs/u/scratch/DLTM/DLTMboxi/env/lib64/python3.6/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+.
+tensor(0.8099)
+torch.float32
+torch.Size([1983])
+sec1A-roa-hist
+0.0012391910262056537---svr---0.0009917769398057165
+Total execution time:  870.4753193855286
+/gpfs/u/scratch/DLTM/DLTMboxi/env/lib64/python3.6/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+.
+tensor(0.5069)
+torch.float32
+torch.Size([2000])
+sec7-tobinq-hist
+0.026115618866219336---svr---0.007296347165883149
+Total execution time:  897.3435385227203
+/gpfs/u/scratch/DLTM/DLTMboxi/env/lib64/python3.6/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+.
+tensor(0.8099)
+torch.float32
+torch.Size([2000])
+sec7-roa-nohist
+0.0011109904904711204---svr---0.0009222947739191105
+Total execution time:  904.2570714950562
+/gpfs/u/scratch/DLTM/DLTMboxi/env/lib64/python3.6/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+.
+tensor(0.3481)
+torch.float32
+torch.Size([2000])
+sec7-roe-hist
+0.025759618862160365---svr---0.012941337525549948
+Total execution time:  918.465005159378
+/gpfs/u/scratch/DLTM/DLTMboxi/env/lib64/python3.6/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+.
+tensor(0.5069)
+torch.float32
+torch.Size([2000])
+sec7-tobinq-nohist
+0.026157489345589674---svr---0.007333857628125502
+Total execution time:  967.3252339363098
+/gpfs/u/scratch/DLTM/DLTMboxi/env/lib64/python3.6/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+.
+tensor(0.8099)
+torch.float32
+torch.Size([2000])
+sec7-roa-hist
+0.0011120169608421445---svr---0.0009224549631850101
+Total execution time:  968.1785717010498
+/gpfs/u/scratch/DLTM/DLTMboxi/env/lib64/python3.6/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+.
+tensor(0.7898)
+torch.float32
+torch.Size([1983])
+sec1A-eps-hist
+0.0018958567527452585---svr---0.001378915817133374
+Total execution time:  967.7934124469757
+(env) [DLTMboxi@npl41 doc-level-unfreeze-100percent]$ sh log1p2.sh
+/gpfs/u/scratch/DLTM/DLTMboxi/env/lib64/python3.6/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+.
+tensor(0.0711)
+torch.float32
+torch.Size([1983])
+sec1A-mark_to_bk-hist
+0.021402448450961287---svr---0.01613263453722426
+Total execution time:  786.3118176460266
+/gpfs/u/scratch/DLTM/DLTMboxi/env/lib64/python3.6/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+.
+tensor(0.2045)
+torch.float32
+torch.Size([1983])
+sec1A-Z_score_c-hist
+0.03571966251296229---svr---0.025356956850174375
+Total execution time:  787.389820098877
+/gpfs/u/scratch/DLTM/DLTMboxi/env/lib64/python3.6/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+.
+tensor(0.3525)
+torch.float32
+torch.Size([2000])
+sec7-tier1_c-nohist
+0.006603411401015381---svr---0.0022052207888212426
+Total execution time:  819.1500482559204
+/gpfs/u/scratch/DLTM/DLTMboxi/env/lib64/python3.6/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+.
+tensor(0.3525)
+torch.float32
+torch.Size([1983])
+sec1A-tier1_c-hist
+0.005149743869166241---svr---0.002009057279388889
+Total execution time:  830.5294315814972
+.
+tensor(0.1543)
+torch.float32
+torch.Size([1983])
+sec1A-leverage-nohist
+0.005329125017086918---svr---0.004792013024689342
+Total execution time:  838.7978501319885
+/gpfs/u/scratch/DLTM/DLTMboxi/env/lib64/python3.6/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+/gpfs/u/scratch/DLTM/DLTMboxi/env/lib64/python3.6/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+.
+tensor(0.0711)
+torch.float32
+torch.Size([2000])
+sec7-mark_to_bk-nohist
+0.02053423748225954---svr---0.014508896258528622
+Total execution time:  844.9642641544342
+/gpfs/u/scratch/DLTM/DLTMboxi/env/lib64/python3.6/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+.
+tensor(0.3525)
+torch.float32
+torch.Size([1983])
+sec1A-tier1_c-nohist
+0.005184752088773794---svr---0.002019146013240564
+Total execution time:  852.9180097579956
+/gpfs/u/scratch/DLTM/DLTMboxi/env/lib64/python3.6/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+.
+tensor(0.1543)
+torch.float32
+torch.Size([1983])
+sec1A-leverage-hist
+0.005269754024947219---svr---0.004738332577634918
+Total execution time:  862.1662194728851
+/gpfs/u/scratch/DLTM/DLTMboxi/env/lib64/python3.6/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+.
+tensor(0.2045)
+torch.float32
+torch.Size([2000])
+sec7-Z_score_c-nohist
+0.033934861770375496---svr---0.024558495621941255
+Total execution time:  862.278258562088
+/gpfs/u/scratch/DLTM/DLTMboxi/env/lib64/python3.6/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+.
+tensor(0.1543)
+torch.float32
+torch.Size([2000])
+sec7-leverage-hist
+0.005101414914482506---svr---0.00404064280322533
+Total execution time:  863.6392986774445
+/gpfs/u/scratch/DLTM/DLTMboxi/env/lib64/python3.6/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+.
+tensor(0.2045)
+torch.float32
+torch.Size([2000])
+sec7-Z_score_c-hist
+0.03390502388727032---svr---0.024550767411852345
+Total execution time:  867.650102853775
+/gpfs/u/scratch/DLTM/DLTMboxi/env/lib64/python3.6/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+.
+tensor(0.1543)
+torch.float32
+torch.Size([2000])
+sec7-leverage-nohist
+0.0051314313465359845---svr---0.0040650394103551755
+Total execution time:  867.7837386131287
+.
+tensor(0.3525)
+torch.float32
+torch.Size([2000])
+sec7-tier1_c-hist
+0.006582175258010535---svr---0.0021984539251412726
+Total execution time:  878.2820658683777
+/gpfs/u/scratch/DLTM/DLTMboxi/env/lib64/python3.6/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+/gpfs/u/scratch/DLTM/DLTMboxi/env/lib64/python3.6/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+.
+tensor(0.0711)
+torch.float32
+torch.Size([1983])
+sec1A-mark_to_bk-nohist
+0.021561592931868687---svr---0.016312776039172396
+Total execution time:  886.1128835678101
+.
+tensor(0.0711)
+torch.float32
+torch.Size([2000])
+sec7-mark_to_bk-hist
+0.020449961281648138---svr---0.014429445540289031
+Total execution time:  908.9718797206879
+/gpfs/u/scratch/DLTM/DLTMboxi/env/lib64/python3.6/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+/gpfs/u/scratch/DLTM/DLTMboxi/env/lib64/python3.6/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+.
+tensor(0.2045)
+torch.float32
+torch.Size([1983])
+sec1A-Z_score_c-nohist
+0.035753484389990556---svr---0.025367772810512647
+Total execution time:  980.4246799945831
+(env) [DLTMboxi@npl41 doc-level-unfreeze-100percent]$ exit
+logout
+There are stopped jobs.
+(env) [DLTMboxi@npl41 doc-level-unfreeze-100percent]$ deactivate
+[DLTMboxi@npl41 doc-level-unfreeze-100percent]$ exit
+logout
+There are stopped jobs.
+[DLTMboxi@npl41 doc-level-unfreeze-100percent]$ exit
+logout
+Connection to nplfen01 closed.
+[DLTMboxi@blp01 ~]$ exit
+logout
+Connection to blp01.ccni.rpi.edu closed.
+(base) namir@Namirs-MacBook ~ % 
